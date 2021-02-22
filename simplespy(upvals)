@@ -422,7 +422,7 @@ function SimpleSpy:GetFunctionInfo(func)
 	assert(typeof(func) == "function", "Instance expected, got " .. typeof(func))
 	return v2v{functionInfo = {
 		info = debug.getinfo(func),
-		constants = debug.getupvalues(func)
+		upvalues = debug.getupvalues(func)
 	}}
 end
 
@@ -1680,7 +1680,7 @@ function remoteHandler(hookfunction, methodName, remote, args, func, calling)
 		if func and islclosure(func) then
 			local functionInfo = {}
 			pcall(function() functionInfo.info = debug.getinfo(func) end)
-			pcall(function() functionInfo.constants = debug.getupvalues(func) end)
+			pcall(function() functionInfo.upvalues = debug.getupvalues(func) end)
 			pcall(function() functionInfoStr = v2v{functionInfo = functionInfo} end)
 			pcall(function() if type(calling) == "userdata" then src = calling end end)
 		end
