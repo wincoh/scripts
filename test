@@ -1,0 +1,13 @@
+local p = game.Players.LocalPlayer
+local c = p.Character
+
+function toTarget(T)
+   local tween_s = game:service"TweenService"
+   local info = TweenInfo.new((T.Position - c.HumanoidRootPart.Position).Magnitude/2000, Enum.EasingStyle.Linear)
+   local tic_k = tick()
+   local tween, err = pcall(function()
+       local tween = tween_s:Create(game.Players.LocalPlayer.Character["HumanoidRootPart"], info, {CFrame = T})
+       tween:Play()
+   end)
+   if not tween then return err end
+end
