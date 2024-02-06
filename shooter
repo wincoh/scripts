@@ -1,0 +1,64 @@
+local args = {
+    [1] = game:GetService("Players").LocalPlayer.Character:FindFirstChild("Green Water Gun"),
+    [2] = {
+        ["p"] = Vector3.new(-49.726806640625, 5.86094856262207, -166.9356689453125),
+        ["pid"] = 1,
+        ["part"] = workspace.Targets.TargetsZone2.Lvl2Target:FindFirstChild("Meshes/Target_Cylinder.001 (1)"),
+        ["d"] = 25.757444381713867,
+        ["maxDist"] = 25.75725746154785,
+        ["m"] = Enum.Material.Plastic,
+        ["sid"] = 37,
+        ["t"] = 0.5068096705829194,
+        ["n"] = Vector3.new(0.9913352727890015, 0.13135653734207153, 0.00006684541585855186)
+    }
+}
+
+game:GetService("ReplicatedStorage").WeaponSystem.Remotes.WeaponHit:FireServer(unpack(args))
+local args = {
+    [1] = game:GetService("Players").LocalPlayer.Character:FindFirstChild("Green Water Gun"),
+    [2] = {
+        ["p"] = Vector3.new(-49.59880447387695, 4.894883155822754, -158.859375),
+        ["pid"] = 1,
+        ["part"] = workspace.Targets.TargetsZone2.Lvl2Target:FindFirstChild("Meshes/Target_Cylinder.001 (1)"),
+        ["d"] = 22.545751571655273,
+        ["maxDist"] = 22.528900146484375,
+        ["m"] = Enum.Material.Plastic,
+        ["sid"] = 38,
+        ["t"] = 0.7682467083721612,
+        ["n"] = Vector3.new(0.9913352727890015, 0.13135653734207153, 0.00006684541585855186)
+    }
+}
+
+game:GetService("ReplicatedStorage").WeaponSystem.Remotes.WeaponHit:FireServer(unpack(args))
+local args = {
+    [1] = game:GetService("Players").LocalPlayer.Character:FindFirstChild("Green Water Gun"),
+    [2] = {
+        ["p"] = Vector3.new(-49.66836166381836, 5.419431209564209, -149.57754516601562),
+        ["pid"] = 1,
+        ["part"] = workspace.Targets.TargetsZone2.Lvl2Target:FindFirstChild("Meshes/Target_Cylinder.001 (1)"),
+        ["d"] = 22.341772079467773,
+        ["maxDist"] = 22.338947296142578,
+        ["m"] = Enum.Material.Plastic,
+        ["sid"] = 39,
+        ["t"] = 0.42900064995528364,
+        ["n"] = Vector3.new(0.9913349747657776, 0.13135845959186554, 0.00007531036681029946)
+    }
+}
+
+game:GetService("ReplicatedStorage").WeaponSystem.Remotes.WeaponHit:FireServer(unpack(args))
+local args = {
+    [1] = game:GetService("Players").LocalPlayer.Character:FindFirstChild("Green Water Gun"),
+    [2] = {
+        ["p"] = Vector3.new(-49.71989822387695, 5.80920934677124, -143.32168579101562),
+        ["pid"] = 1,
+        ["part"] = workspace.Targets.TargetsZone2.Lvl2Target:FindFirstChild("Meshes/Target_Cylinder.001 (1)"),
+        ["d"] = 24.304271697998047,
+        ["maxDist"] = 24.30425262451172,
+        ["m"] = Enum.Material.Plastic,
+        ["sid"] = 40,
+        ["t"] = 0.5521179778890808,
+        ["n"] = Vector3.new(0.9913349747657776, 0.13135845959186554, 0.00005838016659254208)
+    }
+}
+
+game:GetService("ReplicatedStorage").WeaponSystem.Remotes.WeaponHit:FireServer(unpack(args))
