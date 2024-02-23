@@ -1,0 +1,19 @@
+local plr = game.Players.LocalPlayer
+
+for i,v in pairs(game.Players:GetPlayers()) do
+    if v ~= plr and v and v.Character then
+        local args = {
+            [1] = "Damage",
+            [2] = {
+                [1] = 9e9,
+                [2] = 9e9,
+                [3] = 9e9,
+                [5] = 0,
+                [6] = v.Character,
+                [8] = "rbxassetid://137579113"
+            }
+        }
+
+        workspace.WeaponEvent:FireServer(unpack(args))
+    end
+end
