@@ -1,0 +1,10 @@
+local function FindFunction(FuncName) 
+    for i,v in pairs(getgc(true)) do
+    if type(v) == "function" then
+    local info = debug.getinfo(v)
+    if string.find(tostring(info.name),FuncName:lower()) then
+    print(info.name)
+    end
+    end
+    end
+end
