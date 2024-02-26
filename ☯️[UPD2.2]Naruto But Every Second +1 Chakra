@@ -1,0 +1,76 @@
+local p = game.Players.LocalPlayer
+local c = p.Character
+getgenv().Win = false
+getgenv().Sharingan = false
+getgenv().rebirth = false
+
+function toTarget(T)
+   local tween_s = game:service"TweenService"
+   local info = TweenInfo.new((T.Position - c.HumanoidRootPart.Position).Magnitude/2000, Enum.EasingStyle.Linear)
+   local tic_k = tick()
+   local tween, err = pcall(function()
+       local tween = tween_s:Create(game.Players.LocalPlayer.Character["HumanoidRootPart"], info, {CFrame = T})
+       tween:Play()
+   end)
+   if not tween then return err end
+end
+
+function ki()
+    for i,v in pairs(workspace:GetChildren()) do
+        if string.find(v.Name,"draw") and v:FindFirstChild("TouchInterest") then
+            firetouchinterest(c.HumanoidRootPart,v,0)
+            firetouchinterest(c.HumanoidRootPart,v,1)
+        end
+    end
+end
+
+function kill()
+    for i,v in pairs(workspace.World:GetChildren()) do
+        if v:FindFirstChild("Part") then
+            game:GetService("ReplicatedStorage").Events.Player.DmgHandle:FireServer(v.Part,true)
+        end
+    end
+end
+
+function rebirth()
+game:GetService("ReplicatedStorage").Events.Player.RebirthEvent:FireServer()
+end
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/LegoHacks/Utilities/main/UI.lua"))();
+local Window = Library:CreateWindow("Naruto")
+local folder = Window:AddFolder("Main")
+folder:AddToggle({text = "Auto Wins", callback = function(value)
+getgenv().Win=value
+end})
+folder:AddToggle({text = "Auto Sharingans", callback = function(value)
+getgenv().Sharingan=value
+end})
+folder:AddToggle({text = "Auto Rebirth", callback = function(value)
+getgenv().rebirth=value
+end})
+folder:AddButton({text = "Destroy Gui", callback = function() game.CoreGui.ScreenGui:Destroy() end})
+Library:Init()
+
+spawn(function()
+while task.wait() do
+if getgenv().rebirth then
+rebirth()
+end
+end
+end)
+
+spawn(function()
+while task.wait() do
+if getgenv().Win then
+kill()
+end
+end
+end)
+
+spawn(function()
+while task.wait() do
+if getgenv().Sharingan then
+ki()
+end
+end
+end)
