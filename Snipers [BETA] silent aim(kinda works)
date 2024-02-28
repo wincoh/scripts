@@ -1,0 +1,62 @@
+local p = game.Players.LocalPlayer
+
+local Players = game:GetService("Players")
+local Mouse = game:GetService("Players").LocalPlayer:GetMouse()
+
+local function getClosestPlayerToCursor()
+    local closestPlayer = nil
+    local closestDistance = math.huge
+    local mousePosition = Mouse.Hit.Position
+    
+    for _, player in pairs(Players:GetPlayers()) do
+    if player == Players.LocalPlayer then continue end
+        if player.Character and player.Character:IsDescendantOf(workspace) then
+            local character = player.Character
+            local rootPart = character:FindFirstChild("HumanoidRootPart")
+            if rootPart then
+                local distance = (mousePosition - rootPart.Position).magnitude
+                if distance < closestDistance then
+                    closestDistance = distance
+                    closestPlayer = player
+                end
+            end
+        end
+    end
+    
+    return closestPlayer -- could return a part instead ex: return closestPlayer.Character.Head
+end
+
+local sniper = p.Backpack:FindFirstChild("Sniper") or p.Character:FindFirstChild("Sniper")
+
+function kill(v)
+local args = {
+    [1] = sniper,
+    [2] = {
+        ["p"] = Vector3.new(-50.24846267700195, 36.721824645996094, 6.955256938934326),
+        ["pid"] = 1,
+        ["part"] = v.Character.UpperTorso,
+        ["d"] = 132.7508087158203,
+        ["maxDist"] = 122.29047393798828,
+        ["h"] = v.Character.Humanoid,
+        ["m"] = Enum.Material.Plastic,
+        ["sid"] = 1,
+        ["t"] = 0.2770323508438239,
+        ["n"] = Vector3.new(0.22237780690193176, 0.033047787845134735, -0.9744003415107727)
+    }
+}
+
+game:GetService("ReplicatedStorage").WeaponsSystem.Network.WeaponHit:FireServer(unpack(args))
+end
+
+local Old; Old = hookmetamethod(game, "__namecall", function(Self,...)
+    local Args = {...}
+    local Method = getnamecallmethod()
+    
+    if Method == "FireServer" and Self.Name == "WeaponFired" then
+        kill(getClosestPlayerToCursor())
+        print("works?")
+    return Old(Self, unpack(Args))
+    end
+    return Old(Self,...)
+end)
+
