@@ -1,5 +1,5 @@
 -- https://github.com/LorekeeperZinnia/Dex
-
+--loadstring(game:HttpGet("https://raw.githubusercontent.com/wincoh/scripts/main/dark%20dex"))()
 --[[
 	New Dex
 	Final Version
