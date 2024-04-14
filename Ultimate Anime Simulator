@@ -1,0 +1,91 @@
+--https://www.roblox.com/games/11250063361/New-Map-Ultimate-Anime-Simulator
+
+local p = game.Players.LocalPlayer
+local c = p.Character
+
+getgenv().farm = false
+
+local library = loadstring(game:HttpGetAsync('https://raw.githubusercontent.com/LegoHacks/Utilities/main/UI.lua'))()
+local w = library:CreateWindow("Ultimate Anime Simulator")
+local F = w:AddFolder("Farm")
+local f = w:AddFolder("Misc")
+F:AddToggle({
+    text = "Autofarm",
+    state = false,
+    callback = function(bool) farm = bool end
+})
+F:AddButton({text = "Destroy Gui",callback = function()  game.CoreGui.ScreenGui:Remove() end})
+f:AddSlider({text = "WalkSpeed",value = 16,min = 16,max = 100,float = 1,callback = function(a) p.Character.Humanoid.WalkSpeed = a end})
+library:Init()
+
+local mobs = {
+  "Beerus"
+}
+
+local function Check(mob)
+    if mob and mob:FindFirstChildOfClass("Humanoid") and mob:FindFirstChildOfClass("Humanoid").Health > 0 and mob:FindFirstChild"HumanoidRootPart" then
+        return true
+        else
+        return false
+    end
+end
+
+while wait() do
+if farm == true then
+local pets = {}
+for i,v in pairs(workspace.FollowModels.FollowModels_5442805821:GetChildren()) do
+    if not table.find(pets,v.Name) then table.insert(pets,v.Name) end
+end
+for _,Pet in pairs(pets) do
+for i,v in pairs(workspace.Monsters:GetDescendants()) do
+  if farm and v:FindFirstChild("MonsterName") and v:FindFirstChild("MonsterHp") and v:FindFirstChild("RootPart") and v.MonsterHp.Value > 0 --[[] and table.find(mobs,v.MonsterName.Value)]] then
+      if (c.HumanoidRootPart.Position - v.RootPart.Position).Magnitude < math.huge then
+      repeat
+      wait()
+      c.HumanoidRootPart.CFrame = v.RootPart.CFrame
+      local args = {
+    [1] = "OneKillMonster",
+    [2] = v
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("MonsterRemote"):FireServer(unpack(args))
+
+      local args = {
+    [1] = "AttackMonsterByFollow",
+    [2] = v,
+    [3] = workspace:WaitForChild("FollowModels"):WaitForChild("FollowModels_5442805821"):WaitForChild(Pet)
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("MonsterRemote"):FireServer(unpack(args))
+
+until farm == false or v.MonsterHp.Value <= 0
+if v.MonsterHp.Value == 0 and table.find(mobs,v.MonsterName.Value) then
+    print("Buy")
+local args = {
+    [1] = "BuyRoleByMoney",
+    [2] = v,
+    [3] = "CoinNum"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("MonsterRemote"):FireServer(unpack(args))
+
+    else
+    print("Sell")
+    local args = {
+    [1] = "SellMonster",
+    [2] = v,
+    [3] = false
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("MonsterRemote"):FireServer(unpack(args))
+end
+end   
+end
+end
+end
+end
+end
+        
+
+
+
