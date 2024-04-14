@@ -19,7 +19,7 @@ f:AddSlider({text = "WalkSpeed",value = 16,min = 16,max = 100,float = 1,callback
 library:Init()
 
 local mobs = {
-  "Beerus"
+  "Mikasa","Armin","Jean","Eren","Erwin","Reiner",
 }
 
 local function Check(mob)
