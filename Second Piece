@@ -1,0 +1,78 @@
+local p = game.Players.LocalPlayer
+local c = p.Character
+local vu = game:GetService("VirtualUser")
+getgenv().m = "Snow Bandit"
+getgenv().farm = true
+
+
+function hit()
+	vu:Button1Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+	vu:Button1Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end
+
+local function Check(mob)
+	if mob and mob:FindFirstChild("Humanoid") and mob.Humanoid.Health > 0 and mob:FindFirstChild("HumanoidRootPart") then
+		return true
+	else
+		return false
+	end
+end
+
+local function Insatkill(mob)
+	if mob and mob:FindFirstChild("Humanoid") and mob.Humanoid.Health > 0 then
+		if mob.Humanoid.Health < mob.Humanoid.MaxHealth then
+			mob.Humanoid.Health=0;
+		end
+	end
+end
+
+local function HasQuest()
+	if p and p:FindFirstChild("Quest") then
+		return true
+	else 
+		return false
+	end
+end
+
+local function GetQuest(quest)
+	for i,v in pairs(workspace.Quest:GetChildren()) do
+		if v:IsA("Part") and v:FindFirstChild("ProximityPrompt") and v.ProximityPrompt:FindFirstChild("Quest") and v.ProximityPrompt.Quest.Value == quest then
+			c.HumanoidRootPart.CFrame = v.CFrame
+			task.wait(.5)
+			fireproximityprompt(v.ProximityPrompt)
+		end
+	end
+end
+
+function tp(T)
+	if p and c and c:FindFirstChild("HumanoidRootPart") then
+		c.HumanoidRootPart.CFrame = T
+	end
+end
+
+function toTarget(T)
+	local tween_s = game:service"TweenService"
+	local info = TweenInfo.new((T.Position - c.HumanoidRootPart.Position).Magnitude/2000, Enum.EasingStyle.Linear)
+	local tic_k = tick()
+	local tween, err = pcall(function()
+		local tween = tween_s:Create(game.Players.LocalPlayer.Character["HumanoidRootPart"], info, {CFrame = T})
+		tween:Play()
+	end)
+	if not tween then return err end
+end
+
+while farm do wait()
+	for i,v in next, game.Workspace.Lives:GetChildren() do
+		if farm and string.find(v.Name, m) and Check(v) then
+			repeat wait()
+				if HasQuest() == false then
+					GetQuest(m)
+				end
+				--toTarget(v.HumanoidRootPart.CFrame * CFrame.new(0,0,4))
+				tp(v.HumanoidRootPart.CFrame * CFrame.new(0,0,4))
+				hit()
+				--Insatkill(v)
+			until not farm or v == nil or v.Humanoid.Health <= 0 or not Check(v)
+		end
+	end
+end
