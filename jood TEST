@@ -20,13 +20,6 @@ for i,v in pairs(workspace:GetDescendants()) do
         --game:GetService("ReplicatedStorage").HakiOn:FireServer()
         --v.HumanoidRootPart.CFrame = plr.Character.HumanoidRootPart.CFrame*CFrame.new(0,0,-8)
         plr.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame*CFrame.new(0,0,5)
-        local args = {
-            [1] = v.HumanoidRootPart.CFrame,
-            [2] = v.HumanoidRootPart.Position,
-            [3] = v.HumanoidRootPart.Position
-        }
-        
-        game:GetService("Players").LocalPlayer.Character.Hajime.Skill1.RemoteEvent:FireServer(unpack(args))
         
         --firetouchinterest(plr.Character.HumanoidRootPart,workspace["#1 Island"].TouchedSaveZone,0)
         --firetouchinterest(plr.Character:WaitForChild("HumanoidRootPart"),workspace["#1 Island"].TouchedSaveZone,1)
