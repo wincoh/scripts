@@ -1,0 +1,42 @@
+local plr = game.Players.LocalPlayer
+getgenv().farm = false
+
+local Library = loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
+local Window = Library:NewWindow("Jood Piece")
+local Section = Window:NewSection("Main")
+Section:CreateToggle("KILL ALL", function(value)
+    farm=value
+end)
+
+local hand = plr.Character:FindFirstChild("RightHand") or plr.Character:FindFirstChild("LeftHand")
+
+
+while wait() do
+if farm then
+--if not plr.Character:FindFirstChild("Combat") and plr.Backpack:FindFirstChild("Combat") then plr.Backpack:FindFirstChild("Combat").Parent = plr.Character end
+for i,v in pairs(workspace:GetDescendants()) do
+    if farm and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and v:FindFirstChild("AttackScript") then
+        repeat wait()
+        --game:GetService("ReplicatedStorage").HakiOn:FireServer()
+        --v.HumanoidRootPart.CFrame = plr.Character.HumanoidRootPart.CFrame*CFrame.new(0,0,-8)
+        plr.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame*CFrame.new(0,0,5)
+        local args = {
+            [1] = v.HumanoidRootPart.CFrame,
+            [2] = v.HumanoidRootPart.Position,
+            [3] = v.HumanoidRootPart.Position
+        }
+        
+        game:GetService("Players").LocalPlayer.Character.Hajime.Skill1.RemoteEvent:FireServer(unpack(args))
+        
+        --firetouchinterest(plr.Character.HumanoidRootPart,workspace["#1 Island"].TouchedSaveZone,0)
+        --firetouchinterest(plr.Character:WaitForChild("HumanoidRootPart"),workspace["#1 Island"].TouchedSaveZone,1)
+		--if v.Humanoid.Health < v.Humanoid.MaxHealth then v.Humanoid.Health=0 end
+        --firetouchinterest(v.HumanoidRootPart,hand,0)
+        --firetouchinterest(v.HumanoidRootPart,hand,1)
+        plr.Character.Hajime.Combo.C0:FireServer(hand)
+        plr.Character.Hajime.Combo.C1:FireServer(hand)
+        until farm == false or v.Humanoid.Health <= 0 or v == nil
+    end
+end
+end
+end
