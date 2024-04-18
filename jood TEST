@@ -18,12 +18,12 @@ for i,v in pairs(workspace:GetDescendants()) do
     if farm and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and v:FindFirstChild("AttackScript") then
         repeat wait()
         --game:GetService("ReplicatedStorage").HakiOn:FireServer()
-        --v.HumanoidRootPart.CFrame = plr.Character.HumanoidRootPart.CFrame*CFrame.new(0,0,-8)
-        plr.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame*CFrame.new(0,0,5)
+        v.HumanoidRootPart.CFrame = plr.Character.HumanoidRootPart.CFrame*CFrame.new(0,0,-3.8)
+        --plr.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame*CFrame.new(0,0,5)
         
         --firetouchinterest(plr.Character.HumanoidRootPart,workspace["#1 Island"].TouchedSaveZone,0)
         --firetouchinterest(plr.Character:WaitForChild("HumanoidRootPart"),workspace["#1 Island"].TouchedSaveZone,1)
-		--if v.Humanoid.Health < v.Humanoid.MaxHealth then v.Humanoid.Health=0 end
+	if v.Humanoid.Health < v.Humanoid.MaxHealth then v.Humanoid.Health=0 end
         --firetouchinterest(v.HumanoidRootPart,hand,0)
         --firetouchinterest(v.HumanoidRootPart,hand,1)
         plr.Character.Hajime.Combo.C0:FireServer(hand)
