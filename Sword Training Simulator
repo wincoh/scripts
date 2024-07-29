@@ -1,0 +1,60 @@
+getgenv().Settings = {
+Stregnth = false,
+Wins = false,
+Rebirth = false}
+
+local Library = loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
+
+local Window = Library:NewWindow("Window")
+local Section = Window:NewSection("SectionName")
+Section:CreateToggle("Stregnth", function(value)
+Stregnth = value
+print(value)
+end)
+Section:CreateToggle("Wins", function(value)
+Wins = value
+print(value)
+end)
+Section:CreateToggle("Rebirth", function(value)
+Rebirth = value
+print(value)
+end)
+
+spawn(function()
+while wait() do
+if Stregnth then
+local args = {
+    [1] = 9e20
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("Train"):FireServer(unpack(args))
+
+end
+end
+end)
+
+spawn(function()
+while wait() do
+if Wins then
+local args = {
+    [1] = 9e20
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("WinGain"):FireServer(unpack(args))
+
+end
+end
+end)
+
+spawn(function()
+while wait() do
+if Rebirth then
+local args = {
+    [1] = 9e20
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("HealthAdd"):FireServer(unpack(args))
+
+end
+end
+end)
