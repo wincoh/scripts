@@ -1,0 +1,22 @@
+local plr = game.Players.LocalPlayer
+local c = plr.Character
+
+local arms = c:FindFirstChild("RightHand") or c:FindFirstChild("LeftHand")
+
+getgenv().autohit = true
+
+while autohit do wait()
+    for i,v in next, workspace:GetDescendants() do
+        if autohit and v:FindFirstChild("ToolDrop") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+            --repeat
+                wait()
+                v.HumanoidRootPart.CFrame = c.HumanoidRootPart.CFrame*CFrame.new(0,0,-20)
+                firetouchinterest(arms,v.HumanoidRootPart,0)
+                firetouchinterest(arms,v.HumanoidRootPart,1)
+                --if v.Humanoid.Health < v.Humanoid.MaxHealth then v.Humanoid.Health=0 end
+                --v.HumanoidRootPart.CFrame = c.HumanoidRootPart.CFrame*CFrame.new(0,0,-3)
+                c.Combat:Activate()
+            --until v.Humanoid.Health <= 0
+        end
+    end
+end
