@@ -1,0 +1,39 @@
+local plr = game.Players.LocalPlayer
+local c = plr.Character
+while wait() do
+for i,v in pairs(workspace["\229\137\175\230\156\172\229\156\176\229\155\190"]["4"]["\229\156\176\229\155\190"].Enemy:GetDescendants()) do
+if v:findFirstChild("EnemyConfiguration") and v:findFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+--[[local args = {
+    [1] = {
+        ["phsic"] = {
+            ["Power"] = v.Humanoid.Health,
+            ["Time"] = 0.15,
+            ["Dir"] = Vector3.new(0.2879161238670349, 0.4472135901451111, -0.8468201160430908)
+        },
+        ["damage"] = v.Humanoid.Health,
+        ["castPercent"] = 0,
+        ["hitID"] = 2,
+        ["isSetNetworkOwnerEnemy"] = true,
+        ["skillID"] = 15070001
+    },
+    [2] = v.Name
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Msg"):WaitForChild("HitEvent"):FireServer(unpack(args))
+]]
+local args = {
+    [1] = {
+        ["castPercent"] = 0,
+        ["damage"] = 30,
+        ["isSetNetworkOwnerEnemy"] = true,
+        ["hitID"] = 2,
+        ["skillID"] = 15070203
+    },
+    [2] = v.Name
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Msg"):WaitForChild("HitEvent"):FireServer(unpack(args))
+
+end
+end
+end
