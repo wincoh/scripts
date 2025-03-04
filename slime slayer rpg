@@ -1,0 +1,114 @@
+local p = game.Players.LocalPlayer
+local c = p.Character
+getgenv().farm = true
+
+function toTarget(T)
+   local tween_s = game:service"TweenService"
+   local info = TweenInfo.new((T.Position - c.HumanoidRootPart.Position).Magnitude/2000, Enum.EasingStyle.Linear)
+   local tic_k = tick()
+   local tween, err = pcall(function()
+       local tween = tween_s:Create(game.Players.LocalPlayer.Character["HumanoidRootPart"], info, {CFrame = T})
+       tween:Play()
+   end)
+   if not tween then return err end
+end
+
+
+function getShards()
+
+for i,v in pairs(workspace:GetDescendants()) do
+if v.Name == "Shard" and v.ClassName == "MeshPart" and v.Transparency ~= 1 and v:FindFirstChild("TouchInterest") then
+
+firetouchinterest(c.HumanoidRootPart,v,0)
+firetouchinterest(c.HumanoidRootPart,v,1)
+
+end
+end
+
+end
+
+while farm do wait()
+getShards()
+for i,v in pairs(workspace.Enemies:GetChildren()) do
+if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("CombatService"):WaitForChild("RF"):WaitForChild("ScheduleSkillEnd"):InvokeServer("Javelin Graveyard",0,0)
+local args = {
+    [1] = "Javelin Graveyard",
+    [2] = {
+        ["TimeToAttackStart"] = 0.800000011920929,
+        ["Player"] = game:GetService("Players").LocalPlayer,
+        ["PlayerSkillData"] = {
+            ["Level"] = 400,
+            ["Exp"] = 20
+        },
+        ["StartCF"] = CFrame.new(-366.5607604980469, 8.03645133972168, 22.355680465698242, -0.02509683184325695, -6.449203482361554e-08, -0.9996850490570068, 1.6473400421546103e-08, 1, -6.492591353435273e-08, 0.9996850490570068, -1.809764782478851e-08, -0.02509683184325695),
+        ["Start"] = 1741102982.967768,
+        ["Length"] = 1.9500000476837158,
+        ["TimeToAttackEnd"] = 1.5333333015441895,
+        ["PartyMemberNames"] = {}
+    }
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("CombatService"):WaitForChild("RF"):WaitForChild("ExecuteSkill"):InvokeServer(unpack(args))
+function getNil(name,class) for _,v in next, getnilinstances() do if v.ClassName==class and v.Name==name then return v;end end end
+
+local args = {
+    [1] = "Javelin Graveyard",
+    [2] = v,
+    [3] = {
+        ["Part"] = v:FindFirstChild("HumanoidRootPart"),
+        ["HitCF"] = Vector3.new()
+    },
+    [4] = Vector3.new(16.321044921875, 0.22929954528808594, 4.636919021606445),
+    [5] = true
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("CombatService"):WaitForChild("RF"):WaitForChild("SkillDamage"):InvokeServer(unpack(args))
+local args = {
+    [1] = "Javelin Graveyard"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("CombatService"):WaitForChild("RF"):WaitForChild("RegisterSkillEnd"):InvokeServer(unpack(args))
+local args = {
+    [1] = "Volcanic Surge",
+    [2] = 1741105019.96637,
+    [3] = 1.9999999749033075
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("CombatService"):WaitForChild("RF"):WaitForChild("ScheduleSkillEnd"):InvokeServer(unpack(args))
+local args = {
+    [1] = "Volcanic Surge",
+    [2] = {
+        ["TimeToAttackStart"] = 0.9122807101199502,
+        ["Player"] = game:GetService("Players").LocalPlayer,
+        ["StartCF"] = CFrame.new(-580.9533081054688, 4.999999046325684, -7718.50927734375, -0.7230823040008545, -5.340338304904435e-08, -0.690761923789978, -2.600259740859201e-08, 1, -5.009159309565803e-08, 0.690761923789978, -1.825873852112636e-08, -0.7230823040008545),
+        ["Start"] = 1741105019.966044,
+        ["Length"] = 1.9999999749033075,
+        ["TimeToAttackEnd"] = 1.368421002438194,
+        ["PartyMemberNames"] = {}
+    }
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("CombatService"):WaitForChild("RF"):WaitForChild("ExecuteSkill"):InvokeServer(unpack(args))
+function getNil(name,class) for _,v in next, getnilinstances() do if v.ClassName==class and v.Name==name then return v;end end end
+
+local args = {
+    [1] = "Volcanic Surge",
+    [2] = v,
+    [3] = {
+        ["Part"] = v:FindFirstChild("HumanoidRootPart"),
+        ["HitCF"] = Vector3.new()
+    },
+    [4] = Vector3.new(0.695186197757721, 0, 0.7188298106193542)
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("CombatService"):WaitForChild("RF"):WaitForChild("SkillDamage"):InvokeServer(unpack(args))
+local args = {
+    [1] = "Volcanic Surge"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("CombatService"):WaitForChild("RF"):WaitForChild("RegisterSkillEnd"):InvokeServer(unpack(args))
+
+end
+end
+end
