@@ -1,0 +1,37 @@
+local player = game.Players.LocalPlayer
+getgenv().farm = false
+
+function hit()
+local args = {
+    [1] = {
+        ["type"] = "M1",
+        ["InAir"] = false,
+        ["UpTilt"] = false
+    }
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Resource"):WaitForChild("Remotes"):WaitForChild("M1"):FireServer(unpack(args))
+
+end
+
+while getgenv().farm do task.wait()
+for _, v in pairs(workspace.Mobs:GetChildren()) do
+    if v.Name == "Lv750" and v:findFirstChild("HumanoidRootPart") and v:findFirstChild("Humanoid") and v.Humanoid.Health > 0 then
+        repeat
+        task.wait()
+--[[local args = {
+    [1] = {
+        ["Quest"] = "Quest 14",
+        ["Type"] = "RepeatQuest"
+    }
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("Resource"):WaitForChild("Remotes"):WaitForChild("Bindable"):WaitForChild("Compliments"):FireServer(unpack(args))
+]]
+        if v.Humanoid.Health < v.Humanoid.MaxHealth then v.Humanoid.Health = 0; end
+         player.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame*CFrame.new(0,0,5)
+        hit()
+        until v.Humanoid.Health <= 0 or not getgenv().farm
+    end
+end
+end
