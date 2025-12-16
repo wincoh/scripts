@@ -1,0 +1,25 @@
+local player = game.Players.LocalPlayer
+local char = player.Character
+local ffc = game.FindFirstChild
+getgenv().farm = true
+
+function getZom() 
+    local Zom = nil;
+    local MDistance = math.huge;
+
+    for i,v in next, workspace.BossRoom1:GetDescendants() do --MobSpawns
+        if ffc(v,"HumanoidRootPart") and ffc(v,"Humanoid") and v.Humanoid.Health > 0 then
+            local distance = (char.HumanoidRootPart.Position - v.HumanoidRootPart.Position).Magnitude
+            if distance < MDistance then
+                MDistance = distance
+                Zom = v
+            end
+        end
+    end
+
+    return Zom
+end
+
+while farm do wait()
+game:GetService("ReplicatedStorage"):WaitForChild("Attack"):FireServer(getZom())
+end
